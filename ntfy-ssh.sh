@@ -1,7 +1,7 @@
 #!/bin/bash
 
-NTFY_URL="https://ntfy.local.toandyto.xyz"
-NTFY_TOPIC="server"
+NTFY_URL=""
+NTFY_TOPIC=""
 # Use ntfy_username and ntfy_password OR ntfy_token
 NTFY_USERNAME=""
 NTFY_PASSWORD=""
