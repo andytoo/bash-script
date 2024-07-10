@@ -43,4 +43,4 @@ EOF
 
 curl -H "Accept: application/json" \
   -H "Content-Type:application/json" \
-  -H "$NTFY_AUTH" -X POST --data "$(NTFY_POST_DATA)" $NTFY_URL
+  -H "$NTFY_AUTH" -X POST --data "$(NTFY_POST_DATA)" "$NTFY_URL"
