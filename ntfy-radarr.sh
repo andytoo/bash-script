@@ -1,11 +1,11 @@
 #!/bin/bash
 
-NTFY_URL=""
-NTFY_TOPIC=""
-# Use ntfy_username and ntfy_password OR ntfy_token
-NTFY_USERNAME=""
-NTFY_PASSWORD=""
-NTFY_TOKEN=""
+# NTFY_URL=""
+# NTFY_TOPIC=""
+# # Use ntfy_username and ntfy_password OR ntfy_token
+# NTFY_USERNAME=""
+# NTFY_PASSWORD=""
+# NTFY_TOKEN=""
 # Leave empty if you do not want an icon.
 NTFY_ICON="https://raw.githubusercontent.com/Radarr/Radarr/develop/Logo/48.png"
 
@@ -21,26 +21,26 @@ else
   NTFY_AUTH=""
 fi
 
-if [ "$RADARR_EVENTTYPE" == "Test" ]; then
+if [ "$radarr_eventtype" == "Test" ]; then
   NTFY_TAG=information_source
   NTFY_TITLE="Testing"
-elif [ "$RADARR_EVENTTYPE" == "Grab" ]; then
+elif [ "$radarr_eventtype" == "Grab" ]; then
   NTFY_TAG=inbox_tray
-  NTFY_TITLE="$RADARR_MOVIE_TITLE ($RADARR_MOVIE_YEAR)"
-elif [ "$RADARR_EVENTTYPE" == "Download" ]; then
+  NTFY_TITLE="$radarr_movie_title ($radarr_movie_year)"
+elif [ "$radarr_eventtype" == "Download" ]; then
   NTFY_TAG=white_check_mark
-  NTFY_TITLE="$RADARR_MOVIE_TITLE ($RADARR_MOVIE_YEAR)"
-  NTFY_MESSAGE="[$RADARR_MOVIEFILE_QUALITY]"
-elif [ "$RADARR_EVENTTYPE" == "HealthIssue" ]; then
+  NTFY_TITLE="$radarr_movie_title ($radarr_movie_year)"
+  NTFY_MESSAGE="[$radarr_moviefile_quality]"
+elif [ "$radarr_eventtype" == "HealthIssue" ]; then
   NTFY_TAG=warning
-  NTFY_TITLE="[$RADARR_HEALTH_ISSUE_LEVEL]"
-  NTFY_MESSAGE="$RADARR_HEALTH_ISSUE_MESSAGE"
+  NTFY_TITLE="[$radarr_health_issue_level]"
+  NTFY_MESSAGE="$radarr_health_issue_message"
 else
   NTFY_TAG=information_source
-  NTFY_TITLE="$RADARR_MOVIE_TITLE ($RADARR_MOVIE_YEAR)"
+  NTFY_TITLE="$radarr_movie_title ($radarr_movie_year)"
 fi
 
-if [ "$RADARR_EVENTTYPE" == "Download" ]; then
+if [ "$radarr_eventtype" == "Download" ]; then
 NTFY_POST_DATA()
 {
   cat <<EOF
@@ -48,13 +48,13 @@ NTFY_POST_DATA()
   "topic": "$NTFY_TOPIC",
   "tags": ["$NTFY_TAG"],
   "icon": "$NTFY_ICON",
-  "title": "Radarr: $RADARR_EVENTTYPE",
+  "title": "Radarr: $radarr_eventtype",
   "message": "$NTFY_TITLE $NTFY_MESSAGE",
   "actions": [
     {
       "action": "view",
       "label": "IMDB",
-      "url": "https://www.imdb.com/title/$RADARR_MOVIE_IMDBID",
+      "url": "https://www.imdb.com/title/$radarr_movie_imdbid",
       "clear": true
     }
   ]
@@ -69,7 +69,7 @@ NTFY_POST_DATA()
   "topic": "$NTFY_TOPIC",
   "tags": ["$NTFY_TAG"],
   "icon": "$NTFY_ICON",
-  "title": "Radarr: $RADARR_EVENTTYPE",
+  "title": "Radarr: $radarr_eventtype",
   "message": "$NTFY_TITLE $NTFY_MESSAGE"
 }
 EOF

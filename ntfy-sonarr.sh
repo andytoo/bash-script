@@ -1,11 +1,11 @@
 #!/bin/bash
 
-NTFY_URL=""
-NTFY_TOPIC=""
-# Use ntfy_username and ntfy_password OR ntfy_token
-NTFY_USERNAME=""
-NTFY_PASSWORD=""
-NTFY_TOKEN=""
+# NTFY_URL=""
+# NTFY_TOPIC=""
+# # Use ntfy_username and ntfy_password OR ntfy_token
+# NTFY_USERNAME=""
+# NTFY_PASSWORD=""
+# NTFY_TOKEN=""
 # Leave empty if you do not want an icon.
 NTFY_ICON="https://raw.githubusercontent.com/Sonarr/Sonarr/develop/Logo/48.png"
 
@@ -21,26 +21,26 @@ else
   NTFY_AUTH=""
 fi
 
-if [ "$SONARR_EVENTTYPE" == "Test" ]; then
+if [ "$sonarr_eventtype" == "Test" ]; then
   NTFY_TAG=information_source
   NTFY_TITLE="Testing"
-elif [ "$SONARR_EVENTTYPE" == "Grab" ]; then
+elif [ "$sonarr_eventtype" == "Grab" ]; then
   NTFY_TAG=inbox_tray
-  NTFY_TITLE="$SONARR_SERIES_TITLE - sonarr_episodefile_episodetitles (S$SONARR_RELEASE_SEASONNUMBER E$SONARR_RELEASE_EPISODENUMBERS)"
-elif [ "$SONARR_EVENTTYPE" == "Download" ]; then
+  NTFY_TITLE="$sonarr_series_title - $sonarr_episodefile_episodetitles (S$sonarr_release_seasonnumber E$sonarr_release_episodenumbers)"
+elif [ "$sonarr_eventtype" == "Download" ]; then
   NTFY_TAG=white_check_mark
-  NTFY_TITLE="$SONARR_SERIES_TITLE - sonarr_episodefile_episodetitles (S$SONARR_EPISODEFILE_SEASONNUMBER E$SONARR_EPISODEFILE_EPISODENUMBERS)"
-  NTFY_MESSAGE="[$SONARR_EPISODEFILE_QUALITY]"
-elif [ "$SONARR_EVENTTYPE" == "HealthIssue" ]; then
+  NTFY_TITLE="$sonarr_series_title - $sonarr_episodefile_episodetitles (S$sonarr_episodefile_seasonnumber E$sonarr_episodefile_episodenumbers)"
+  NTFY_MESSAGE="[$sonarr_episodefile_quality]"
+elif [ "$sonarr_eventtype" == "HealthIssue" ]; then
   NTFY_TAG=warning
-  NTFY_TITLE="[$SONARR_HEALTH_ISSUE_LEVEL]"
-  NTFY_MESSAGE="$SONARR_HEALTH_ISSUE_MESSAGE"
+  NTFY_TITLE="[$sonarr_health_issue_level]"
+  NTFY_MESSAGE="$sonarr_health_issue_message"
 else
   NTFY_TAG=information_source
-  NTFY_TITLE="$SONARR_SERIES_TITLE - sonarr_episodefile_episodetitles (S$SONARR_EPISODEFILE_SEASONNUMBER E$SONARR_EPISODEFILE_EPISODENUMBERS)"
+  NTFY_TITLE="$sonarr_series_title - $sonarr_episodefile_episodetitles (S$sonarr_episodefile_seasonnumber E$sonarr_episodefile_episodenumbers)"
 fi
 
-if [ "$SONARR_EVENTTYPE" == "Download" ]; then
+if [ "$sonarr_eventtype" == "Download" ]; then
 NTFY_POST_DATA()
 {
   cat <<EOF
@@ -48,13 +48,13 @@ NTFY_POST_DATA()
   "topic": "$NTFY_TOPIC",
   "tags": ["$NTFY_TAG"],
   "icon": "$NTFY_ICON",
-  "title": "Sonarr: $SONARR_EVENTTYPE",
+  "title": "Sonarr: $sonarr_eventtype",
   "message": "$NTFY_TITLE $NTFY_MESSAGE",
   "actions": [
     {
       "action": "view",
       "label": "TVDB",
-      "url": "https://www.thetvdb.com/?id=$SONARR_SERIES_TVDBID&tab=series",
+      "url": "https://www.thetvdb.com/?id=$sonarr_series_tvdbid&tab=series",
       "clear": true
     }
   ]
@@ -69,7 +69,7 @@ NTFY_POST_DATA()
   "topic": "$NTFY_TOPIC",
   "tags": ["$NTFY_TAG"],
   "icon": "$NTFY_ICON",
-  "title": "Sonarr: $SONARR_EVENTTYPE",
+  "title": "Sonarr: $sonarr_eventtype",
   "message": "$NTFY_TITLE $NTFY_MESSAGE"
 }
 EOF
