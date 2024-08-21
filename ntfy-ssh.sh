@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# NTFY_URL=""
+NTFY_URL="https://ntfy.toandyto.xyz"
 NTFY_TOPIC="server"
 # Use ntfy_username and ntfy_password OR ntfy_token
 # NTFY_USERNAME=""
 # NTFY_PASSWORD=""
-# NTFY_TOKEN=""
+NTFY_TOKEN="tk_kx1trl1epx74wjnm4z9z34h45lt33"
 # Leave empty if you do not want an icon.
 NTFY_ICON=""
 
