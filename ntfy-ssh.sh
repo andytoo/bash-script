@@ -1,11 +1,11 @@
 #!/bin/bash
 
-NTFY_URL=""
-NTFY_TOPIC=""
+# NTFY_URL=""
+NTFY_TOPIC="server"
 # Use ntfy_username and ntfy_password OR ntfy_token
-NTFY_USERNAME=""
-NTFY_PASSWORD=""
-NTFY_TOKEN=""
+# NTFY_USERNAME=""
+# NTFY_PASSWORD=""
+# NTFY_TOKEN=""
 # Leave empty if you do not want an icon.
 NTFY_ICON=""
 
